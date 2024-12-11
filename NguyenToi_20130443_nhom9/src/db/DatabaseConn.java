@@ -26,8 +26,8 @@ public class DatabaseConn {
 		try {
 			// Lấy thông tin từ DBProperties
 			String jdbcUrl = DBProperties.getControlURL();
-			String user = DBProperties.getControlUsername();
-			String pass = DBProperties.getControlPassword();
+			String user = DBProperties.getStagingUsername();
+			String pass = DBProperties.getStagingPassword();
 
 			// Tạo kết nối với DriverManager
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -165,9 +165,7 @@ public class DatabaseConn {
 	public static void main(String[] args) throws SQLException {
 		DatabaseConn dbConnect = new DatabaseConn();
 		if (dbConnect != null) {
-			dbConnect.connectToStaging();
-			dbConnect.LoadStaging("Test Tour", "test_image.jpg", "Test Location", "Test Province", "Bus", "1000.00", "This is a test description.", "Test Start", "Test Destination", "5", "2024-12-10", "2024-12-15");
-			System.out.println("completed");
+			dbConnect.connectToControl();
 		}
 		dbConnect.closeStaging();
 
